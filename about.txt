@@ -1,0 +1,5 @@
+This bot is aimed to create something of a bot that is going to earn points from the 
+like4like.org site that will ultimately be used to drive traffic to; a dumb site full of popup
+and all kinds of ads to earn money.
+
+
