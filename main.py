@@ -9,11 +9,12 @@ import time
 
 loginStatus= True
 
-chrome_options = webdriver.ChromeOptions()
-prefs = {"profile.default_content_setting_values.notifications" : 2}
-chrome_options.add_experimental_option("prefs",prefs)
 
-driver = webdriver.Chrome("C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\seleniumbase\\drivers\\chromedriver.exe",chrome_options=chrome_options)
+edgeOption= webdriver.EdgeOptions()
+prefs = {"profile.default_content_setting_values.notifications" : 2}
+edgeOption.add_experimental_option('prefs', prefs)
+
+driver= webdriver.Edge('D:\\python\\automation\\selenium\\msedgedriver.exe',options=edgeOption)
 driver.get("https://www.like4like.org/")
 driver.maximize_window()
 
