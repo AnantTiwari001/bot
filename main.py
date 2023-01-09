@@ -16,6 +16,8 @@ edgeOption.add_experimental_option('prefs', prefs)
 
 driver= webdriver.Edge('D:\\python\\automation\\selenium\\msedgedriver.exe',options=edgeOption)
 driver.get("https://www.like4like.org/")
+fnumber= input('Enter the facebook number!')
+fpassword= input('Enter the facebook password!')
 driver.maximize_window()
 
 def login():
@@ -34,8 +36,8 @@ def fblogin():
         print('found the email!')
         email= driver.find_element(By.NAME, 'email')
         password= driver.find_element(By.NAME, 'pass')
-        email.send_keys('+9779814253523')
-        password.send_keys('Anant@123')
+        email.send_keys(fnumber)
+        password.send_keys(fpassword)
         password.send_keys(Keys.RETURN)
         loginStatus=False
 
