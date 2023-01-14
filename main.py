@@ -32,14 +32,19 @@ def login():
     submit.click()
 
 def fblogin():
-        WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.NAME, 'email')))
-        print('found the email!')
-        email= driver.find_element(By.NAME, 'email')
-        password= driver.find_element(By.NAME, 'pass')
-        email.send_keys(fnumber)
-        password.send_keys(fpassword)
-        password.send_keys(Keys.RETURN)
-        loginStatus=False
+    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.NAME, 'email')))
+    print('found the email!')
+    email= driver.find_element(By.NAME, 'email')
+    password= driver.find_element(By.NAME, 'pass')
+    email.send_keys(fnumber)
+    password.send_keys(fpassword)
+    password.send_keys(Keys.RETURN)
+    loginStatus=False
+
+def closeChat():
+    # WebDriverWait(driver,10).until(EC.presence_of_element_located(By.CSS_SELECTOR, 'div[aria-label="Close chat"]'))
+    close= driver.find_element(By.CSS_SELECTOR, 'div[aria-label="Close chat"]')
+    close.click()
 
 def follow():
     like=driver.find_element(By.CSS_SELECTOR,'div[aria-label="Like"]')
@@ -73,9 +78,15 @@ def earn():
             print('login sucessful!')
         print('follow next!')
         WebDriverWait(driver, 20).until(EC.presence_of_element_located((By.CSS_SELECTOR, 'div[aria-label="Like"]')))
-        driver.implicitly_wait(10)
+        # driver.implicitly_wait(10)
+        try:
+            closeChat()
+        except:
+            print('no chat open!')
+        else:
+            print('closed chat sucessfully')
         follow()
-        driver.implicitly_wait(20)
+        driver.implicitly_wait(30)
         print('close after wait!')
         driver.close()
         print('switching window!')
@@ -99,7 +110,7 @@ driver.get('https://www.like4like.org/user/earn-facebook.php')
 
 print('should be after the wait!')
 earn()
-for i in range(20):
+for i in range(50):
     earn()
     # try:
     #     earn()
