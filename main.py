@@ -10,11 +10,11 @@ import time
 loginStatus= True
 
 
-edgeOption= webdriver.EdgeOptions()
+chrome_options = webdriver.ChromeOptions()
 prefs = {"profile.default_content_setting_values.notifications" : 2}
-edgeOption.add_experimental_option('prefs', prefs)
+chrome_options.add_experimental_option("prefs",prefs)
 
-driver= webdriver.Edge('D:\\python\\automation\\selenium\\msedgedriver.exe',options=edgeOption)
+driver = webdriver.Chrome("C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\seleniumbase\\drivers\\chromedriver.exe",chrome_options=chrome_options)
 driver.get("https://www.like4like.org/")
 fnumber= input('Enter the facebook number!')
 fpassword= input('Enter the facebook password!')
