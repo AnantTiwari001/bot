@@ -54,7 +54,7 @@ def earn():
     print('oh start boy')
     driver.implicitly_wait(2)
     print(driver.window_handles)
-    WebDriverWait(driver, 20).until(EC.presence_of_element_located((By.CSS_SELECTOR, 'a.earn_pages_button')))
+    WebDriverWait(driver, 40).until(EC.presence_of_element_located((By.CSS_SELECTOR, 'a.earn_pages_button')))
     btn= driver.find_element(By.CSS_SELECTOR, 'a.earn_pages_button')#earn btn
     try:
         btn.click()
