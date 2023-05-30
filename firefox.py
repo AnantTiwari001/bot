@@ -1,6 +1,6 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support import expected_conditions as EC
@@ -9,13 +9,18 @@ from selenium.common.exceptions import TimeoutException
 import time
 
 # loginStatus= True
+# chrome_options = webdriver.ChromeOptions()
+# prefs = {"profile.default_content_setting_values.notifications" : 2}
+# chrome_options.add_experimental_option("prefs",prefs)
+
+# driver = webdriver.Chrome("C:\\Users\\chromedriver.exe",chrome_options=chrome_options)
+
+firefox_options = Options()
+firefox_options.set_preference("dom.webnotifications.enabled", False)
+
+driver = webdriver.Firefox(options=firefox_options)
 
 
-chrome_options = webdriver.ChromeOptions()
-prefs = {"profile.default_content_setting_values.notifications" : 2}
-chrome_options.add_experimental_option("prefs",prefs)
-
-driver = webdriver.Chrome("C:\\Users\\chromedriver.exe",chrome_options=chrome_options)
 driver.get("https://www.like4like.org/")
 # fnumber= input('Enter the facebook number!')
 # fpassword= input('Enter the facebook password!')
@@ -39,6 +44,7 @@ def login():
         passwordInput.send_keys('+p*%!VU.g7jyMYQ')
         submit = driver.find_element(By.CSS_SELECTOR, 'span.button.medium.orange.cursor')
         submit.click()
+        time.sleep(3)
         return(True)
     except:
         print('\033[91mLogin  failed!\033[0m')
@@ -56,6 +62,7 @@ def fblogin():
         password.send_keys(Keys.RETURN)
         NotfbLogged= False
         print('logged in successfully!')
+        time.sleep(3)
     except TimeoutException:
         print('\033[91mLoading took too much time!\033[0m')
 
@@ -89,6 +96,7 @@ def conformEarn():
 
 def like():
     try:
+        WebDriverWait(driver,10).until(EC.presence_of_element_located((By.CSS_SELECTOR,'div[aria-label="Like"]')))
         likeBtn=driver.find_element(By.CSS_SELECTOR,'div[aria-label="Like"]')
         likeBtn.click()
         return True

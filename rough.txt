@@ -1,0 +1,3 @@
+likeBtn=driver.find_element(By.CSS_SELECTOR,'span[aria-label="See who reacted to this"]')
+mostEmoje= likeBtn.find_element(By.XPATH,"./*/*/*/*/*")   #fifth child
+attrValue = mostEmoje.get_attribute("aria-Label")        #Get the attribe like this --  'Like: 129 people'
