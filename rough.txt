@@ -1,3 +1,20 @@
 likeBtn=driver.find_element(By.CSS_SELECTOR,'span[aria-label="See who reacted to this"]')
 mostEmoje= likeBtn.find_element(By.XPATH,"./*/*/*/*/*")   #fifth child
 attrValue = mostEmoje.get_attribute("aria-Label")        #Get the attribe like this --  'Like: 129 people'
+
+
+
+#Sets
+- login 
+- scroll to nth post 
+- react or not randomly on one in nineth chance
+- repeat for next post 
+
+
+for loop i:
+likeBtns[i].scrollTo
+randomNum(1,9)
+if randomNum ==5 : Like()
+End Of Loop
+
+#Test tommorrow if LikeBtn variable changes itself when document expands or need to reassign
