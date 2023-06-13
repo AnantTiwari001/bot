@@ -1,4 +1,5 @@
 from selenium import webdriver
+import undetected_chromedriver as uc
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
@@ -9,17 +10,26 @@ from selenium.common.exceptions import TimeoutException
 import time
 
 # loginStatus= True
+# chrome_options = webdriver.ChromeOptions()
+# prefs = {"profile.default_content_setting_values.notifications" : 2}
+# chrome_options.add_experimental_option("prefs",prefs)
+
+# driver = webdriver.Chrome("C:\\Users\\chromedriver.exe",chrome_options=chrome_options)
 
 
-chrome_options = webdriver.ChromeOptions()
-prefs = {"profile.default_content_setting_values.notifications" : 2}
-chrome_options.add_experimental_option("prefs",prefs)
+options = Options()
+options.add_argument('--profile-directory=Default')
+options.add_argument('--user-data-dir=C:\\Users\\User\\AppData\\Local\\Google\\Chrome\\User Data\\')
+options.add_argument('--disable-service-workers')
+options.add_argument("--disable-features=Permissions-Policy")
 
-driver = webdriver.Chrome("C:\\Users\\chromedriver.exe",chrome_options=chrome_options)
+driver = uc.Chrome( executable_path='C:\\Users\\chromedriver.exe',options=options)
+
+
 driver.get("https://www.like4like.org/")
 # fnumber= input('Enter the facebook number!')
 # fpassword= input('Enter the facebook password!')
-NotfbLogged= True
+NotfbLogged= False
 fnumber='9814253523'
 fpassword='Anant@123'
 driver.maximize_window()
@@ -120,13 +130,14 @@ def main():
             break
         time.sleep(1)
     
-    WebDriverWait(driver, 400).until(lambda driver: page_loaded(driver))
+    # WebDriverWait(driver, 400).until(lambda driver: page_loaded(driver))
+    time.sleep(2)
     driver.get('https://www.like4like.org/user/earn-facebook.php')
 
     
     # iteration should start from here    
 
-    for i in range(10):
+    for i in range(20):
         while(True):    #EarnBtn
             result=earnBtn()
             if (result):

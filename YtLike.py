@@ -1,7 +1,7 @@
 from selenium import webdriver
-# from undetected_chromedriver import Chrome, ChromeOptions
+import undetected_chromedriver as uc
 from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.firefox.options import Options
+from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support import expected_conditions as EC
@@ -9,46 +9,15 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.common.exceptions import TimeoutException
 import time
 
-# loginStatus= True
-# chrome_options = webdriver.ChromeOptions()
-# prefs = {"profile.default_content_setting_values.notifications" : 2}
-# chrome_options.add_experimental_option("prefs",prefs)
+options = Options()
+options.add_argument('--profile-directory=Default')
+options.add_argument('--user-data-dir=C:\\Users\\User\\AppData\\Local\\Google\\Chrome\\User Data\\')
+options.add_argument('--disable-service-workers')
+options.add_argument("--disable-features=Permissions-Policy")
 
-# driver = webdriver.Chrome("C:\\Users\\chromedriver.exe",chrome_options=chrome_options)
+driver = uc.Chrome( executable_path='C:\\Users\\chromedriver.exe',options=options)
 
-
-# Set up the Firefox profile
-# firefox_profile = webdriver.FirefoxProfile(user_profile_path)
-
-profile_path = "C:\\Users\\User\\AppData\\Roaming\\Mozilla\\Firefox\\Profiles"
-# Create Firefox options
-firefox_options = webdriver.FirefoxOptions()
-
-# Set the profile directory
-firefox_options.set_preference("profile", profile_path)
-
-# Set other preferences as needed
-firefox_options.set_preference("dom.webnotifications.enabled", False)
-
-# Launch Firefox with the specified profile and preferences
-driver = webdriver.Firefox(options=firefox_options)
-
-# firefox_options = Options()
-# firefox_options.profile = firefox_profile
-
-# firefox_options.set_preference("dom.webnotifications.enabled", False)
-
-# driver = webdriver.Firefox(options=firefox_options)
-
-# Create ChromeOptions object
-# chrome_options = ChromeOptions()
-
-# Set preferences
-# chrome_options.add_argument("--disable-notifications")
-
-# Initialize the Undetected Chromedriver with ChromeOptions
-# driver = Chrome(options=chrome_options)
-
+passwords= [['Anant124', '+p*%!VU.g7jyMYQ'], ['Ravi124', 'piQBcSXI']]
 
 driver.get("https://www.like4like.org/")
 # fnumber= input('Enter the facebook number!')
@@ -68,9 +37,9 @@ def login():
         loginLink.click()
 
         emailInput= driver.find_element(By.NAME, 'username')
-        emailInput.send_keys('Anant124')
+        emailInput.send_keys(passwords[1][0])      #Ravi124
         passwordInput= driver.find_element(By.NAME, 'password')
-        passwordInput.send_keys('+p*%!VU.g7jyMYQ')
+        passwordInput.send_keys(passwords[1][1])       #piQBcSXI
         submit = driver.find_element(By.CSS_SELECTOR, 'span.button.medium.orange.cursor')
         submit.click()
         time.sleep(3)
@@ -166,7 +135,7 @@ def main():
     
     # iteration should start from here    
 
-    for i in range(10):
+    for i in range(50):
         while(True):    #EarnBtn
             result=earnBtn()
             if (result):
@@ -186,7 +155,7 @@ def main():
         
         # following next
         follow()
-        time.sleep(3)
+        time.sleep(4)
         driver.close()
         driver.switch_to.window(parentWindow)
 
